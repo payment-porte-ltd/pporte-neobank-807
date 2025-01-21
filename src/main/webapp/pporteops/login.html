@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- <meta http-equiv="Content-Type" content="text/html; charset=windows-1252" /> -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Porte Icon -->
+<link rel="icon" href="../assets/images/brand/pporte.png"
+	type="image/x-icon" />
+<link rel="shortcut icon" type="image/x-icon"
+	href="/..assets/images/brand/pporte.png" />
+<!-- Title -->
+<title>Operation Login</title>
+
+<!--Bootstrap.min css-->
+<link rel="stylesheet"
+	href="../assets/plugins/bootstrap/css/bootstrap.min.css">
+
+<!-- Dashboard css -->
+<link href="../assets/css/ops_style.css" rel="stylesheet" />
+
+<!---Font icons css-->
+<link href="../assets/plugins/iconfonts/plugin.css" rel="stylesheet" />
+<link href="../assets/plugins/iconfonts/icons.css" rel="stylesheet" />
+<link href="../assets/fonts/fonts/font-awesome.min.css" rel="stylesheet">
+<!---Sweetalert2 css-->
+<link href="../assets/plugins/sweetalert2/sweetalert2.css"
+	rel="stylesheet" />
+<style>
+.captcha-box {
+	width: 240px;
+	height: 60px;
+	margin: 0 auto;
+}
+
+#canvas {
+	border: 1px solid #cccccc;
+}
+</style>
+</head>
+<body>
+	<!-- page -->
+	<div class="page"
+		style="background-image: url('../assets/images/background/Signup-BG.jpg'); background-repeat: no-repeat; background-attachment: fixed; background-size: cover;">
+
+		<!-- page-content -->
+		<div class="page-content">
+			<div class="container text-center text-dark">
+				<div class="row">
+					<div class="col-lg-4 d-block mx-auto">
+						<div class="row">
+							<div class="col-xl-12 col-md-12 col-md-12">
+								<div class="card">
+									<div class="card-body">
+										<form id="login-form" method="post"
+											enctype="multipart/form-data">
+											<div class="text-center mb-6">
+												<img src="../assets/images/brand/logo_black.svg" class="" alt="">
+											</div>
+											<h3>
+												<span id="login-h3-login">Login</span>
+											</h3>
+											<p class="text-muted">
+												<span id="login-link-sign-to-acccount">Sign In to
+													your account</span>
+											</p>
+											<div class="input-group mb-4">
+												<!-- <label for="uname"><span id="login-inout-label-userid">User Id</span></label>-->
+												<!--<span class="input-group-addon bg-white"><i class="fa fa-user"></i></span>-->
+												<span class="input-group-addon bg-white"
+													id="login-input-label-userid">User Id</span> <input
+													type="text" class="form-control" placeholder="User Id"
+													name="uname" id="uname" value="" tabindex="1">
+											</div>
+											<div class="input-group mb-4">
+												<span class="input-group-addon bg-white"
+													id="login-input-label-upwd">Password</span> <input
+													type="password" class="form-control" placeholder="Password"
+													name="upwd" id="upwd" value="" tabindex="2">
+											</div>
+											<div class="input-group mb-2">
+												<div>
+													<!--<img src="/captcha" border="0" style="float:right; margin:0px 0px 0px 85px;">-->
+													<div class="captcha-box">
+														<canvas id="canvas"></canvas>
+														<span id="refresh" style="color: blue"><a href="#"><i
+																class="fa fa-rotate-right"></i></a></span>
+														<!-- <span id="valid" style="color: red"><a href = "#"><i class="fa fa-rotate-left"></i></a></span> -->
+													</div>
+												</div>
+												<div
+													style="float: right; margin: 0px 0px 0px 85px; border: 2;">
+													<span id="login-input-label-captcha-msg"
+														style="font-size: small; font-style: italic;">Enter
+														Text from above</span>
+												</div>
+											</div>
+											<div class="input-group mb-4">
+												<span class="input-group-addon bg-white"><i
+													class="fa fa-photo"></i></span> <input type="text"
+													class="form-control" placeholder="" name="ucaptcha"
+													id="ucaptcha" value="" tabindex="3">
+
+											</div>
+											<div class="input-group mb-4" tabindex="4">
+												<label class="custom-control custom-radio"
+													style="display: none;"> <input type="radio"
+													class="custom-control-input" name="login-usertype"
+													value="O" checked> <span
+													class="custom-control-label"
+													id="login-input-label-operation">Operations </span>
+												</label>
+
+											</div>
+											<div class="row" tabindex="5">
+												<div class="col-12">
+													<button type="button" class="btn btn-primary btn-block"
+														id="btn-login" onclick="javascript:fnLogin();return false;">
+														<span id="login-button-submit">Login</span>
+													</button>
+												</div>
+												<!-- <div class="col-12">
+													<a href="#" class="btn btn-link box-shadow-0 px-0"><span id="login-link-forgot-password">Forgot password?</span></a>
+                                                    &nbsp;<a href="#" class="btn btn-link box-shadow-0 px-0" data-toggle="modal" data-target="#largemodal"><span id="login-link-register">Register</span></a>
+												</div> -->
+											</div>
+											<input type="hidden" name="qs" value=""> <input
+												type="hidden" name="rules" value=""> <input
+												type="hidden" name="hdnusertype" value=""> <input
+												type="hidden" name="hdnlang" id="hdnlangpref1" value="en">
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<!-- page-content end -->
+	</div>
+
+
+	<div id="error-msg-login-page" style="display: none;">
+		<span id="login-data-validation-error-swal-header">Oops..</span> <span
+			id="login-data-validation-error-swal-checkdata">Please check
+			your data</span> <span id="login-data-validation-username">Your User
+			id must consist of at least 4 characters</span> <span
+			id="login-data-validation-username-length">Please enter user
+			id</span> <span id="login-data-validation-upwd">Please enter password</span>
+		<span id="login-data-validation-upwd-length">Your password must
+			consist of at least 6 characters</span> <span
+			id="login-data-validation-captcha">Please enter captcha</span> <span
+			id="login-data-validation-captcha-length">Your captcha must
+			consist of at least 6 characters</span>
+
+		<!-- Add a form for page redirection upon registration -->
+		<form method="post" id="logout-form">
+			<input type="hidden" name="qs" value=""> <input type="hidden"
+				name="rules" value=""> <input type="hidden" name="hdnuserid"
+				value=""> <input type="hidden" name="hdnlangpref"
+				id="hdnlangpref3" value="en">
+		</form>
+
+	</div>
+
+	<!-- Jquery js-->
+	<script src="../assets/js/vendors/jquery-3.2.1.min.js"></script>
+
+	<!--Bootstrap.min js-->
+	<script src="../assets/plugins/bootstrap/popper.min.js"></script>
+	<script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+	<!--Moment js-->
+	<script src="../assets/plugins/moment/moment.min.js"></script>
+
+	<!--Jquery Validator js-->
+	<script
+		src="../assets/plugins/jquery-validation-1.19.2/dist/jquery.validate.min.js"></script>
+
+	<!--Sweetalert2 js-->
+	<script src="../assets/plugins/sweetalert2/sweetalert2.js"></script>
+
+	<!-- i18next js-->
+	<script src="../assets/plugins/i18next/i18next.min.js"></script>
+	<!-- Custom js-->
+	<script src="../assets/js/_opslogin.js"></script>
+	<script src="../assets/js/jquery-captcha.min.js"></script>
+	<!--<script src="../assets/js/custom.js"></script>-->
+	<script>
+        $(document).ready(function(){
+            $('#largemodal').on('hidden.bs.modal', function () {
+                $(this).find('form').trigger('reset'); 
+               // var validator = $( "#register-form" ).validate(); validator.resetForm();
+                })              
+        });
+ 
+        const captcha = new Captcha($('#canvas'));          
+        </script>
+</body>
+</html>

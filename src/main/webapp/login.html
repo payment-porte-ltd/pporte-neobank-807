@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- <meta http-equiv="Content-Type" content="text/html; charset=windows-1252" /> -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Porte Icon -->
+<link rel="icon" href="assets/images/brand/pporte.png"
+	type="image/x-icon" />
+<link rel="shortcut icon" type="image/x-icon"
+	href="assets/images/brand/pporte.png" />
+<!-- Title -->
+<title>Login Page</title>
+
+<!--Bootstrap.min css-->
+<link rel="stylesheet"
+	href="assets/plugins/bootstrap/css/bootstrap.min.css">
+
+<!-- Dashboard css -->
+<link href="assets/css/style.css" rel="stylesheet" />
+
+<!---Font icons css-->
+
+<link href="assets/fonts/fonts/font-awesome.min.css" rel="stylesheet">
+<!---Sweetalert2 css-->
+<link href="assets/plugins/sweetalert2/sweetalert2.css" rel="stylesheet" />
+<style>
+.captcha-box {
+	height: 60px !important;
+	margin: 0 auto;
+}
+
+#canvas {
+	border: 1px solid #cccccc;
+	background: white;
+}
+.animation-box{
+	outline: 8px ridge;
+    border-radius: 2rem;
+}
+</style>
+</head>
+<body
+	style="background-image: url('assets/images/background/login-background-min.jpg'); background-repeat: no-repeat; background-attachment: fixed; background-size: cover; padding-right: 0; padding-left: 0;">
+	<!-- page -->
+	<div class="page">
+
+		<!-- page-content -->
+		<div class="page-content">
+			<div class="container"> 
+			<div id="login-bg">
+				<div class="col-lg-12 d-block mx-auto porte-card-content" >
+				
+				<div class="row" >
+				
+					<div class="col-lg-5 col-12 d-block mx-auto">
+							<div style="padding-right: 0; padding-left: 0;">
+								<div class="card-body">
+									<div class="row">
+										<div >
+	
+										        <video width=105%  class="animation-box" preload="auto" autoplay loop muted="muted" volume="0"> 
+										            <source src="assets/images/brand/animation.mp4" type="video/mp4"> 
+										        </video>
+										 </div>	
+									</div>
+								</div>
+							</div>
+					</div>
+				
+					<div class="col-lg-5 col-12 d-block mx-auto" style="border-left: 1px solid #4C4C4C;">
+						<div >
+							<div class="card-body" style="margin-left:54px;margin-top:10px;">
+							<div class="row">	
+								<div class="col">
+									<div class="text-center mb-4">
+										<img src="assets/images/brand/logo.svg" alt="PPORTE">
+									</div>
+								</div>
+								<div class="col">
+								 <div class="text-right mb-4" >
+									<div class="btn-group mt-0 mb-0">
+										<button type="button"
+											class="btn btn-pill btn-sm btn-outline-primary">
+											<span id="lang_def">EN</span>
+										</button>
+										<button type="button"
+											class="btn btn-pill btn-sm btn-outline-primary dropdown-toggle"
+											data-toggle="dropdown">
+											<span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu" role="menu">
+											<li class="dropdown-plus-title"><span
+												id="login-language-title">Languages</span> <b
+												class=" fa fa-angle-up"></b></li>
+											<li><a href="#"
+												onclick="javascript: fnChangePageLanguage('EN');return false;">English</a></li>
+											<li><a href="#"
+												onclick="javascript: fnChangePageLanguage('ES');return false;">Spanish</a></li>
+										</ul>
+									</div>
+
+								</div>
+								</div>
+							
+							</div>
+								
+								<form id="login-form" method="post"
+									enctype="multipart/form-data">
+									<div class="sign_in mt-6" id="sign_in">
+										<p class="font-weight-bold text-left">
+											<span class="text-white" style="font-size:18px" >Sign In</span>
+										</p>
+										<p class="text-left">
+											<span class="text-white" id="label_signup_text">If you don’t have an account <br> You can <span style="color:#27A89D;cursor: pointer;" id="sign_up_redirect_btn">Register here!</span></span>
+										</p>
+										<div class="form-group mb-4">
+											<label class="text-white"><span id="user-id-label">Email</span></label>
+											<div class="input-group">
+												<div class="input-group-prepend">
+											      <div class="input-group-text appended-icon" >
+											        <img width="17" src="assets/images/icons/email.svg" >
+											      </div>
+											    </div>
+										      <input type="email" class="form-control appended-input" placeholder="Enter your Email"
+												name="uname" id="uname"  tabindex="1">
+											</div>
+										</div>
+										<div class="form-group mb-4">
+											<label class="text-white"><span id="password-label">Password</span></label>
+											<div class="input-group">
+												<div class="input-group-prepend">
+											      <div class="input-group-text appended-icon" >
+											        <img width="17" src="assets/images/icons/password.svg" >
+											      </div>
+											    </div>
+												<input type="password" style=" border-bottom-right-radius: 10px; border-top-right-radius: 10px;"class="form-control appended-input" placeholder="Enter your Password"
+												name="upwd" id="upwd" tabindex="2"> 
+												 <span id="show-password" class="eye-slash-postion"><i class="fa fa-eye" style="font-size: 17px; color:#27A89D;"
+				                                  onclick="showc()"></i></span>
+				                                 <span id="hide-password" class="hidden eye-slash-postion"><i class="fa fa-eye-slash" style="font-size: 17px;color:#27A89D;"
+				                                  onclick="hidec()"></i></span>
+											</div>
+										</div>
+										<p class="text-right" id="btn-forgot-password">
+											<span class="text-white" id="login-link-forgot-password" >Forgot password?</span>
+										</p>
+										<div class="form-group mb-2">
+											<div>
+												<div class="captcha-box form-control styled-input-field">
+													<canvas id="canvas"></canvas>
+													<span id="refresh" style="color: #27A89D"><a href="#"><i
+															class="fa fa-rotate-right"></i></a></span>
+												</div>
+											</div>
+											<div>
+												<span id="login-input-label-captcha-msg text-white" style="font-size: small; font-style: italic;">Enter text from above</span>
+											</div>
+										</div>
+										<div class="input-group mb-4">
+											<input type="text" class="form-control" placeholder="Captcha"
+												name="ucaptcha" id="ucaptcha" value="" tabindex="3"
+												style="border-radius: 10px;">
+										</div>
+										<div class="row" tabindex="4">
+											<div class="col-12">
+												<button type="button" class="btn btn-block"
+													id="btn-login" style="background:#27A89D;border-radius: 10px;" onclick="javascript:fnLogin();return false;">
+													<span id="login-button-submit" style="color: white;">Login</span>
+												</button>
+											
+											</div>
+											
+										
+										</div>
+									</div>
+									<input type="hidden" name="qs" value=""> <input
+										type="hidden" name="rules" value=""> <input
+										type="hidden" name="hdnusertype" value=""> <input
+										type="hidden" name="hdnlang" id="hdnlangpref1" value="en">
+								</form>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				
+				</div>
+			    </div>		
+						<div id="div-forgotten-password" class="hidden">
+						  <div class="col-lg-6 d-block mx-auto porte-card-content">
+									<div class="card-body">
+										<h3 class="text-center">
+											<span id="sp_forgot_password_instruction">Enter Your
+												Registered User Id where your temporary password will be
+												sent to.</span>
+										</h3>
+										<form id="forgot-password-form" method="post"
+											enctype="multipart/form-data">										
+													<div class="form-group mb-4">
+													<label class="text-white"><span id="sp-enter-email">Enter email</span></label>
+														<div class="input-group">
+															<div class="input-group-prepend">
+														      <div class="input-group-text appended-icon" >
+														        <img width="17" src="assets/images/icons/email.svg" >
+														      </div>
+														    </div>
+													      <input type="email" class="form-control appended-input" placeholder="Enter your Email"
+															name="username" id="username"  >
+														</div>
+													</div>
+										
+
+											<input type="hidden" name="qs" value=""> <input
+												type="hidden" name="rules" value=""> <input
+												type="hidden" name="hdnpasswprdusertype" value=""> <input
+												type="hidden" name="hdnlang" id="hdnlangpref1" value="en">
+										</form>
+										<div class="row">
+											<div class="col-12">
+												<button type="button" class="btn btn-block" id="btn-retrive-password"
+													 style="background:#27A89D;border-radius: 10px; color:#fff;">
+													<span id="sp-submit-btn">Submit</span>
+												</button>
+											</div>
+										</div>
+
+									</div>
+							</div>
+						</div>
+				
+			
+			</div>
+
+		</div>
+		<!-- page-content end -->
+	</div>
+	<!-- page End-->
+
+
+	<div id="error-msg-login-page" style="display: none;">
+		<span id="login-data-validation-error-swal-header">Oops..</span> <span
+			id="login-data-validation-error-swal-checkdata">Please check
+			your data</span> <span id="login-data-validation-username">Your User
+			id must consist of at least 4 characters</span> <span
+			id="login-data-validation-username-length">Please enter user
+			id</span> <span id="login-data-validation-upwd">Please enter password</span>
+		<span id="login-data-validation-upwd-length">Your password must
+			consist of at least 6 characters</span> <span
+			id="login-data-validation-captcha">Please enter captcha</span> <span
+			id="login-data-validation-captcha-length">Your captcha must
+			consist of at least 6 characters</span> <span
+			id="login-data-text-does-not-match">Text does not match</span> <span
+			id="login-data-text-problem-with-connection">Problem with
+			connection</span>
+
+		<!-- This is for registration modal validation messages -->
+		<span id="register-data-validation-error-swal-checkdata">Registration
+			Failed, please try again</span> <span
+			id="register-data-validation-error-swal-contact-admin">If
+			issue persists please contact admin</span> <span
+			id="register-data-validation-success-header">All Good</span> <span
+			id="register-data-validation-success-message">Registration
+			Succesful</span> <span id="register-data-validation-userid">Please
+			enter user id</span> <span id="register-data-validation-userid-length">Your
+			User id must consist of at least 4 characters</span> <span
+			id="register-data-validation-pwd-length">Please enter password</span>
+		<span id="register-data-validation-userid-length">Your password
+			must consist of at least 6 characters</span> <span
+			id="register-data-validation-fname">Please enter First Name</span> <span
+			id="register-data-validation-lname">Please enter Last Name</span> <span
+			id="register-data-validation-email">Please enter Email address</span>
+		<span id="register-data-validation-email-valid">Please enter
+			proper Email address</span> <span id="register-data-validation-contact">Please
+			enter Contact Number</span> <span id="register-data-validation-address1">Please
+			enter Address</span> <span id="register-data-validation-city">Please
+			enter City</span>
+
+		<!-- Add a form for page redirection upon registration -->
+		<form method="post" id="logout-form">
+			<input type="hidden" name="qs" value=""> <input type="hidden"
+				name="rules" value=""> <input type="hidden" name="hdnuserid"
+				value=""> <input type="hidden" name="hdnlangpref"
+				id="hdnlangpref3" value="EN"> <input type="hidden"
+				name="hdnlgusertype" id="hdnlgusertype">
+		</form>
+		<form method="post" id="select-user-form">
+			<input type="hidden" name="qs" value=""> <input type="hidden"
+				name="rules" value=""> <input type="hidden"
+				name="hdnlangpref" id="hdnlangpref4"> <input type="hidden"
+				name="hdnregusertype" id="hdnregusertype">
+
+		</form>
+
+	</div>
+
+	<!-- Jquery js-->
+	<script src="assets/js/vendors/jquery-3.2.1.min.js"></script>
+
+	<!--Bootstrap.min js-->
+	<script src="assets/plugins/bootstrap/popper.min.js"></script>
+	<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+	<!--Moment js-->
+	<script src="assets/plugins/moment/moment.min.js"></script>
+
+	<!--Jquery Validator js-->
+	<script
+		src="assets/plugins/jquery-validation-1.19.2/dist/jquery.validate.min.js"></script>
+
+	<!--Sweetalert2 js-->
+	<script src="assets/plugins/sweetalert2/sweetalert2.js"></script>
+
+	<!-- i18next js-->
+	<script src="assets/plugins/i18next/i18next.min.js"></script>
+	<!-- Custom js-->
+	<script src="assets/js/_login.js"></script>
+	<script src="assets/js/jquery-captcha.min.js"></script>
+	<!--<script src="assets/js/custom.js"></script>-->
+	<script>
+        $(document).ready(function(){
+            $('#smallModal').on('hidden.bs.modal', function () {
+                $(this).find('form').trigger('reset'); 
+               // var validator = $( "#register-form" ).validate(); validator.resetForm();
+                })              
+        });
+ 
+        const captcha = new Captcha($('#canvas'));          
+        </script>
+</body>
+</html>

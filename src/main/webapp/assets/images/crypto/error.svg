@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="71.027" height="71.027" viewBox="0 0 71.027 71.027">
+    <g>
+        <g fill="none" stroke="#d82929" stroke-width="1.5px" transform="translate(-154 -292.471) translate(154 292.471)">
+            <circle cx="35.513" cy="35.513" r="35.513" stroke="none"/>
+            <circle cx="35.513" cy="35.513" r="34.763"/>
+        </g>
+        <text fill="#d82929" font-family="Nunito-Bold, Nunito" font-size="52px" font-weight="700" transform="translate(-154 -292.471) translate(189.749 347.749)">
+            <tspan x="-9.94" y="0">!</tspan>
+        </text>
+    </g>
+</svg>

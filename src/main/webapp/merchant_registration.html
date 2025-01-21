@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- <meta http-equiv="Content-Type" content="text/html; charset=windows-1252" /> -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Title -->
+<title>Merchant Registration Page</title>
+<!--Bootstrap.min css-->
+<link rel="stylesheet"
+	href="assets/plugins/bootstrap/css/bootstrap.min.css">
+<!-- Dashboard css -->
+<link href="assets/css/ops_style.css" rel="stylesheet" />
+<!---Font icons css-->
+<link href="assets/plugins/iconfonts/plugin.css" rel="stylesheet" />
+<link href="assets/plugins/iconfonts/icons.css" rel="stylesheet" />
+<link href="assets/fonts/fonts/font-awesome.min.css" rel="stylesheet">
+<!---Sweetalert2 css-->
+<link href="assets/plugins/sweetalert2/sweetalert2.css" rel="stylesheet" />
+
+<!-- Forn-wizard css-->
+<link href="assets/plugins/forn-wizard/css/forn-wizard.css"
+	rel="stylesheet" />
+<link href="assets/plugins/formwizard/smart_wizard.css" rel="stylesheet">
+<link href="assets/plugins/formwizard/smart_wizard_theme_dots.css"
+	rel="stylesheet">
+<!-- File Uploads css-->
+<link href="assets/plugins/fileuploads/css/dropify.css" rel="stylesheet"
+	type="text/css" />
+</head>
+<body class="app sidebar-mini rtl"
+	onload="javascript:getMerchantCategory()">
+	<div class="page">
+		<div class="page-main">
+			<!--app-header-->
+			<div class="app-header header d-flex">
+				<div class="container-fluid">
+					<div class="d-flex">
+						<a class="header-brand" style="margin-bottom: 10px;"> <img
+							src="assets/images/brand/logo.svg"
+							class="header-brand-img main-logo" alt="logo"
+							style="width: 190px; height: 35px;">
+						</a>
+						<div class="d-flex order-lg-2 ml-auto header-rightmenu">
+							<!-- Example split danger button -->
+							<div class="d-flex justify-content-center">
+								<div class="btn-group" style="margin: auto; height: content-fit">
+									<button type="button" class="btn btn-outline-primary btn-sm">
+										<span id="lang_def">EN</span>
+									</button>
+									<button type="button"
+										class="btn btn-primary btn-sm  dropdown-toggle-split dropdown-toggle"
+										data-toggle="dropdown" aria-haspopup="true"
+										aria-expanded="false">
+										<span class="sr-only" id="register-language-title">Language</span>
+									</button>
+									<ul class="dropdown-menu" role="menu">
+										<li class="dropdown-plus-title"><span
+											id="reg-language-title">Languages</span> <b
+											class=" fa fa-angle-up"></b></li>
+										<li><a href="#"
+											onclick="javascript: fnChangePageLanguage('en');return false;">English</a></li>
+										<li><a href="#"
+											onclick="javascript: fnChangePageLanguage('es');return false;">Spanish</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--app-header end-->
+			<div class="row">
+				<div class="col-12">
+					<div class="card">
+						<div class="card-header">
+							<h3 class="card-title">
+								<span id="merchernt-registration-title">Merchant
+									Registration</span>
+							</h3>
+						</div>
+						<div class="card-body">
+							<form id="merch-register-form" method="post">
+								<div id="smartwizard-3">
+									<ul>
+										<li><a href="#step-10"><span
+												id="merchernt-registration-form-title1">Business
+													details</span></a></li>
+										<li><a href="#step-11"><span
+												id="merchernt-registration-form-title2">Merchant user
+													details</span></a></li>
+										<li><a href="#step-12"><span
+												id="merchernt-registration-form-title3">Merchant file
+													upload</span></a></li>
+										<!-- <li><a href="#step-13"><span id="merchernt-registration-form-title4">Merchant user credentials</span></a></li> -->
+										<li><a href="#step-14"><span
+												id="merchernt-registration-form-title5">End</span></a></li>
+									</ul>
+									<div>
+										<div id="step-10" class="">
+											<div class="row">
+												<div class="col-6 form-group">
+													<label><span
+														id="merchernt-registration-companyname-label">Company
+															name</span></label> <input type="text" class="form-control"
+														id="companyname" name="companyname"
+														placeholder="Enter Company Name">
+												</div>
+												<div class="col-6 form-group">
+													<label><span
+														id="merchernt-registration-bsndesc-label">Business
+															description</span></label> <input type="text" class="form-control"
+														id="bsndesc" name="bsndesc"
+														placeholder="Enter Business description">
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-6 form-group">
+													<label><span
+														id="merchernt-registration-physic-add-label">Business
+															physical address</span></label> <input type="text" class="form-control"
+														id="physicaladd" name="physicaladd"
+														placeholder="Enter Business physical addres">
+												</div>
+												<div class="col-6 form-group">
+													<label><span
+														id="merchernt-registration-bsnphoneno-label">Business
+															phone number</span></label> <input type="number" class="form-control"
+														id="bsnphoneno" name="bsnphoneno"
+														placeholder="Enter Business phone number">
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-6 form-group">
+													<label><span id="merchernt-registration-mcc-label">Merchant
+															category</span></label> <select
+														class="form-control select2 custom-select" id="selectmcc"
+														name="selectmcc"
+														data-placeholder="Select Merchant category">
+														<option value="" disabled selected>Select your
+															merchant category</option>
+
+
+													</select>
+												</div>
+												<div class="col-6 form-group">
+													<label><span
+														id="merchernt-registration-pricing-label">Select
+															pricing plan</span></label> <select
+														class="form-control select2 custom-select"
+														id="selectpricingplan" name="selectpricingplan"
+														data-placeholder="Select merchant pricing plan">
+														<option value="" disabled selected>Select your
+															pricing plan</option>
+														<option value="39">$39/month package</option>
+														<option value="99">$99/month package</option>
+													</select>
+												</div>
+											</div>
+											<div class="row">
+												<div class="custom-checkbox custom-control">
+													<input type="checkbox" data-checkboxes="mygroup"
+														class="custom-control-input" id="checkbox3"
+														name="checkbox3"> <label for="checkbox3"
+														class="custom-control-label"><span
+														id="merchernt-registration-branches-label">Click
+															here if your business has branches</span></label>
+												</div>
+											</div>
+										</div>
+										<div id="step-11" class="">
+											<div class="row">
+												<div class="col-6 form-group">
+													<label><span
+														id="merchernt-registration-fulname-label">Full name</span></label>
+													<input type="text" class="form-control" id="fullname"
+														name="fullname" placeholder="Enter Full name">
+												</div>
+												<div class="col-6 form-group">
+													<label><span
+														id="merchernt-registration-email-label">Email
+															address</span></label> <input type="email" class="form-control"
+														id="email" name="email" placeholder="Enter email address">
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-6 form-group">
+													<label><span
+														id="merchernt-registration-phono-label">Phone
+															number</span></label> <input type="number" class="form-control"
+														id="merchphoneno" name="merchphoneno"
+														placeholder="Enter Phone number">
+												</div>
+												<div class="col-6 form-group">
+													<label><span id="merchernt-registration-idno-label">National
+															identification number</span></label> <input type="text"
+														class="form-control" id="nationalId" name="nationalId"
+														placeholder="Enter identification number">
+												</div>
+											</div>
+
+										</div>
+										<div id="step-12" class="">
+											<div class="col-xl-12 col-lg-12 col-md-12">
+												<div class="card shadow">
+													<div class="card-body">
+														<input type="file" name="file1" id="file1" class="dropify" />
+													</div>
+												</div>
+											</div>
+										</div>
+										<!-- <div id="step-13" class="">
+												<div class="form-group">
+													<label><span id="merchernt-registration-username-label">Merchant User Name</span></label>
+													<input type="text" class="form-control" id="username" name="username" placeholder="Enter User Name">
+												</div>
+												<div class="row">
+													<div class="col-6 form-group">
+														<label><span id="merchernt-registration-password-label">Password</span></label>
+														<input type="password" class="form-control" id="password" name="password" placeholder="Password">
+													</div>
+													<div class="col-6 form-group">
+														<label><span id="merchernt-registration-confirm-password-label">Confirm Password</label>
+														<input type="password" class="form-control"  placeholder="Confirm password">
+													</div>
+												</div> -->
+										<!-- <div class="row">
+													<div class="col-6 form-group">
+														<label>Transaction PIN</label>
+														<input type="password" class="form-control" id="pin" name="pin" placeholder="PIN">
+													</div>
+													<div class="col-6 form-group">
+														<label>Confirm Transaction PIN</label>
+														<input type="password" class="form-control"  placeholder="PIN">
+													</div>
+												</div> 
+										</div> -->
+										<div id="step-14" class="">
+											<div class="checkbox">
+												<div class="custom-checkbox custom-control">
+													<input type="checkbox" data-checkboxes="mygroup"
+														class="custom-control-input" id="checkbox2"
+														name="checkbox2"> <label for="checkbox2"
+														class="custom-control-label"><span
+														id="merchernt-registration-terms-label">I agree
+															terms & Conditions</span></label>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<input type="hidden" name="qs" value=""> <input
+									type="hidden" name="rules" value=""> <input
+									type="hidden" name="hdnmccid" value=""> <input
+									type="hidden" name="hdnplan" value=""> <input
+									type="hidden" name="hdnhavebranches" value="">
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="error-msg-reg-page" style="display: none;">
+				<span id="reg-data-validation-error-swal-header">Oops..</span> <span
+					id="reg-data-validation-error-swal-checkdata">Please check
+					your data</span> <span id="reg-data-validation-companyname">Please
+					enter Company name </span> <span
+					id="reg-data-validation-companyname-length">Company name
+					must consist of at least 4 characters</span> <span
+					id="reg-data-validation-bsndesc">Please enter Business
+					description</span> <span id="reg-data-validation-bsndesc-length">Business
+					description must consist of at least 10 characters</span> <span
+					id="reg-data-validation-physicaladd">Please Physical address</span>
+				<span id="reg-data-validation-physicaladd-length">Physical
+					address must consist of at least 4 characters</span> <span
+					id="reg-data-validation-bsnphoneno">Please enter Business
+					number</span> <span id="reg-data-validation-bsnphoneno-length">Business
+					number must consist of at least 8 numbers</span> <span
+					id="reg-data-validation-merchphoneno">Please enter phone
+					number</span> <span id="reg-data-validation-merchphoneno-length">Phone
+					number must consist of at least 8 numbers</span> <span
+					id="reg-data-validation-selectmcc">Please select merchant
+					category</span> <span id="reg-data-validation-selectpricingplan">Please
+					select pricing plan</span>
+				<!-- <span id="reg-data-validation-checkbox3">Please tick the above check box</span> -->
+
+				<span id="reg-data-validation-fullname">Please enter Full
+					name</span> <span id="reg-data-validation-fullname-length">Full
+					name must be at least 5 characters</span> <span
+					id="reg-data-validation-email">Please Enter valid email</span> <span
+					id="reg-data-validation-email-required">Please Enter email</span> <span
+					id="reg-data-validation-nationalId">Please enter National
+					identification number</span> <span
+					id="reg-data-validation-nationalId-length">National
+					identification number must be at least 5 numbers</span> <span
+					id="reg-data-validation-checkbox2">Please tick the above
+					check box</span> <span id="reg-data-validation-file1">Please upload
+					file</span>
+			</div>
+			<form method="post" id="get-mcc-form">
+				<input type="hidden" name="qs" value=""> <input
+					type="hidden" name="rules" value="">
+			</form>
+
+			<form method="post" id="logout-form">
+				<input type="hidden" name="qs" value=""> <input
+					type="hidden" name="rules" value=""> <input type="hidden"
+					name="hdnuserid" value=""> <input type="hidden"
+					name="hdnlangpref" id="hdnlangpref3" value="en">
+			</form>
+
+			<form method="post" id="get-mcc-form">
+				<input type="hidden" name="qs" value=""> <input
+					type="hidden" name="rules" value="">
+			</form>
+
+			<form method="post" id="select-user-form">
+				<input type="hidden" name="qs" value=""> <input
+					type="hidden" name="qs" value=""> <input type="hidden"
+					name="rules" value=""> <input type="hidden"
+					name="hdnregusertype" value="">
+			</form>
+		</div>
+	</div>
+	<!--row closed-->
+	<!-- Jquery js-->
+	<script src="assets/js/vendors/jquery-3.2.1.min.js"></script>
+	<!--Bootstrap.min js-->
+	<script src="assets/plugins/bootstrap/popper.min.js"></script>
+	<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<!--Moment js-->
+	<script src="assets/plugins/moment/moment.min.js"></script>
+	<!--Jquery Validator js-->
+	<script
+		src="assets/plugins/jquery-validation-1.19.2/dist/jquery.validate.min.js"></script>
+	<!--Sweetalert2 js-->
+	<script src="assets/plugins/sweetalert2/sweetalert2.js"></script>
+	<!-- i18next js-->
+	<script src="assets/plugins/i18next/i18next.min.js"></script>
+	<!-- Forn-wizard js-->
+	<script src="assets/plugins/formwizard/jquery.smartWizard.js"></script>
+
+	<!--Accordion-Wizard-Form js-->
+	<script
+		src="assets/plugins/accordion-Wizard-Form/jquery.accordion-wizard.min.js"></script>
+
+	<!-- File uploads js -->
+	<script src="assets/plugins/fileuploads/js/dropify.js"></script>
+	<script src="assets/plugins/fileuploads/js/dropify-demo.js"></script>
+	<!-- Custom js-->
+	<script src="assets/js/_merchant_registration.js"></script>
+	<script>
+		$(window).on("load", function(e) {
+			$("#global-loader").fadeOut("slow");
+		})
+	</script>
+</body>
+</html>
